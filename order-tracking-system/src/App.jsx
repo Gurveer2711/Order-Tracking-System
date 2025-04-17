@@ -23,12 +23,18 @@ function App() {
   };
 
   const updateStatus = (id, newStatus) => {
+  if (newStatus === "Cancelled") {
+    // Remove the order
+    setOrders((prevOrders) => prevOrders.filter((order) => order.id !== id));
+  } else {
+    // Update the order's status
     setOrders((prevOrders) =>
       prevOrders.map((order) =>
         order.id === id ? { ...order, status: newStatus } : order
       )
     );
-  };
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
